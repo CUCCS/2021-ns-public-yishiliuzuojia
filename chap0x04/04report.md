@@ -14,6 +14,8 @@
   - 10.211.55.8
   - 00:1c:42:00:00:18
 
+<img src="img/top2.jpeg" alt="top2" style="zoom:50%;" />
+
 ## 二、实验内容
 
 - [x] 检测局域网中的异常终端
@@ -31,7 +33,7 @@ sudo apt update && sudo apt install python3 python3-pip
 pip3 install scapy[complete]
 ```
 
-![安装scrapy](./img/安装scrapy.jpg)
+![安装scapy](./img/安装scapy.jpg)
 
 ### 2.检测局域网中的异常终端
 
@@ -40,21 +42,21 @@ pip3 install scapy[complete]
 ip link show eth0
 ```
 
-<img src="./img/检查混杂模式.jpg" alt="检查混杂模式" style="zoom:50%;" />
+![检查混杂模式](img/检查混杂模式.jpg)
 
 ```
 # 在攻击者主机上开启 scapy，不提升权限有些操作无法进行
 sudo scapy
 ```
 
-<img src="./img/开启scapy.jpg" alt="开启scrapy" style="zoom: 33%;" />
+![开启scapy](img/开启scapy.jpg)
 
 ```bash
 在 scapy 的交互式终端输入以下代码回车执行
 pkt = promiscping("10.211.55.6")
 ```
 
-<img src="./img/scapy执行.jpeg" alt="scapy执行" style="zoom: 33%;" />
+![scapy执行](img/scapy执行.jpg)
 
 ```bash
 # 回到靶机上开启网卡的『混杂模式』
@@ -65,7 +67,7 @@ sudo ip link set eth0 promisc on
 ip link show eth0
 ```
 
-<img src="./img/出现promisc.jpg" alt="出现promisc" style="zoom:33%;" />
+![出现promisc](img/出现promisc.jpg)
 
 ```bash
 # 回到攻击者主机上的 scapy 交互式终端继续执行命令
@@ -81,7 +83,7 @@ pkt = promiscping("10.211.55.6")
 sudo ip link set eth0 promisc off
 ```
 
-<img src="./img/关闭混杂模式.jpg" alt="关闭混杂模式" style="zoom:33%;" />
+![关闭混杂模式](img/关闭混杂模式.jpg)
 
 查阅资料，`promiscping` 命令会发送 `ARP who-has` 请求。
 
@@ -104,7 +106,7 @@ sudo ip link set eth0 promisc off
   arpbroadcast.show()
   ```
 
-  <img src="./img/获取mac地址.jpg" alt="获取mac地址" style="zoom:33%;" />
+  ![获取mac地址](img/获取mac地址.jpg)
 
   ```bash
   # 发送这个 ARP 广播请求
@@ -115,7 +117,7 @@ sudo ip link set eth0 promisc off
   gw_mac
   ```
 
-  <img src="./img/拿到网关mac.jpeg" alt="拿到网关mac" style="zoom: 33%;" />
+  ![拿到网关mac](img/拿到网关mac.jpg)
 
 - 伪造网关的ARP响应包
 
@@ -130,7 +132,7 @@ sudo ip link set eth0 promisc off
   sendp(arpspoofed)
   ```
 
-  <img src="img/forge_arp.jpg" alt="forge_arp" style="zoom: 33%;" />
+  ![forge_arp](img/forge_arp.jpg)
 
   此时在靶机上查看 `ARP` 缓存会发现网关的 MAC 地址**已被「替换」为攻击者主机的 MAC 地址**
 
@@ -138,7 +140,7 @@ sudo ip link set eth0 promisc off
   ip neigh
   ```
 
-  <img src="img/替换成功.jpg" alt="替换成功" style="zoom: 33%;" />
+  ![forge_arp](img/forge_arp.jpg)
 
 - 恢复靶机的ARP缓存记录（回到攻击者主机上的scapy交互式终端继续执行命令）
 
@@ -148,7 +150,7 @@ sudo ip link set eth0 promisc off
   sendp(restorepkt1, count=100, inter=0.2)
   ```
 
-  <img src="img/recovery.jpg" alt="recovery" style="zoom: 33%;" />
+  ![recovery](img/recovery.jpg)
 
   此时在靶机上准备“刷新”网关 `ARP` 记录。
 
@@ -160,7 +162,7 @@ sudo ip link set eth0 promisc off
   ip neigh
   ```
 
-  <img src="img/victim_recovery.jpeg" alt="victim_recovery" style="zoom: 33%;" />
+  ![victim_recovery](img/victim_recovery.jpg)
 
 ## 四、参考资料
 
