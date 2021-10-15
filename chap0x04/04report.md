@@ -14,7 +14,7 @@
   - 10.211.55.8
   - 00:1c:42:00:00:18
 
-<img src="img/top2.jpeg" alt="top2" style="zoom:50%;" />
+![top2](img/top2.jpg)
 
 ## 二、实验内容
 
@@ -33,7 +33,7 @@ sudo apt update && sudo apt install python3 python3-pip
 pip3 install scapy[complete]
 ```
 
-![安装scapy](./img/安装scapy.jpg)
+![安装scapy](img/安装scapy.jpg)
 
 ### 2.检测局域网中的异常终端
 
@@ -75,7 +75,7 @@ ip link show eth0
 pkt = promiscping("10.211.55.6")
 ```
 
-<img src="./img/又一次scapy执行.jpeg" alt="scapy又一次执行" style="zoom:33%;" />
+![又一次scapy执行](img/又一次scapy执行.jpg)
 
 ```bash
 # 在靶机上
