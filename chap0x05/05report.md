@@ -162,7 +162,7 @@ elif stl_resp is None:
 
 - 端口过滤
 
-  ![tcp-stl-fil](/Users/21秋/网络安全/实验五/img/tcp-stl-fil.jpg)
+  ![tcp-stl-fil](img/tcp-stl-fil.jpg)
 
   - nmap复刻
 
